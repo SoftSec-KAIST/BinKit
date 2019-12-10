@@ -1,0 +1,32 @@
+--- shell/ash.c
++++ shell/ash.c
+@@ -8508,11 +8508,6 @@ evaltree(union node *n, int flags)
+ 	TRACE(("leaving evaltree (no interrupts)\n"));
+ }
+ 
+-#if !defined(__alpha__) || (defined(__GNUC__) && __GNUC__ >= 3)
+-static
+-#endif
+-void evaltreenr(union node *, int) __attribute__ ((alias("evaltree"),__noreturn__));
+-
+ static void
+ evalloop(union node *n, int flags)
+ {
+@@ -8639,7 +8634,7 @@ evalsubshell(union node *n, int flags)
+ 			flags &= ~EV_TESTED;
+  nofork:
+ 		redirect(n->nredir.redirect, 0);
+-		evaltreenr(n->nredir.n, flags);
++		evaltree(n->nredir.n, flags);
+ 		/* never returns */
+ 	}
+ 	status = 0;
+@@ -8758,7 +8753,7 @@ evalpipe(union node *n, int flags)
+ 				dup2(pip[1], 1);
+ 				close(pip[1]);
+ 			}
+-			evaltreenr(lp->n, flags);
++			evaltree(lp->n, flags);
+ 			/* never returns */
+ 		}
+ 		if (prevfd >= 0)

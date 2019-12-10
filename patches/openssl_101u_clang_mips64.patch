@@ -1,0 +1,18 @@
+--- crypto/bn/bn_lcl.h
++++ crypto/bn/bn_lcl.h
+@@ -283,6 +283,7 @@ unsigned __int64 _umul128(unsigned __int64 a, unsigned __int64 b,
+         __uint128_t ret=(__uint128_t)(a)*(b);   \
+         (high)=ret>>64; (low)=ret;       })
+ #    else
++#     /*
+ #     define BN_UMULT_HIGH(a,b) ({      \
+         register BN_ULONG ret;          \
+         asm ("dmultu    %1,%2"          \
+@@ -293,6 +294,7 @@ unsigned __int64 _umul128(unsigned __int64 a, unsigned __int64 b,
+         asm ("dmultu    %2,%3"          \
+              : "=l"(low),"=h"(high)     \
+              : "r"(a), "r"(b));
++#     */
+ #    endif
+ #   endif
+ #  endif                        /* cpu */

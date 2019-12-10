@@ -1,0 +1,21 @@
+opti:
+  - O0
+  - O1
+  - O2
+  - O3
+
+arch:
+  - x86_32
+  - x86_64
+  - arm_32
+  - arm_64
+  - mips_32
+  - mips_64
+  - mipseb_32
+  - mipseb_64
+
+compiler:
+  - clang-obfus-fla
+  - clang-obfus-sub
+  - clang-obfus-bcf
+  - clang-obfus-all

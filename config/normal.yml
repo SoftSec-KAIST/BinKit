@@ -1,0 +1,32 @@
+opti:
+  - O0
+  - O1
+  - O2
+  - O3
+  - Os
+
+arch:
+  - x86_32
+  - x86_64
+  - arm_32
+  - arm_64
+  - mips_32
+  - mips_64
+  - mipseb_32
+  - mipseb_64
+
+compiler:
+  - gcc-4.9.4
+  - gcc-5.5.0
+  - gcc-6.4.0
+  - gcc-7.3.0
+  - gcc-8.2.0
+  - clang-4.0
+  - clang-5.0
+  - clang-6.0
+  - clang-7.0
+  - clang-obfus-fla
+  - clang-obfus-sub
+  - clang-obfus-bcf
+  - clang-obfus-all
+

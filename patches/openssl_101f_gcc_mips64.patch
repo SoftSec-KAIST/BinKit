@@ -1,0 +1,18 @@
+--- crypto/bn/bn_lcl.h
++++ crypto/bn/bn_lcl.h
+@@ -288,6 +288,7 @@ extern "C" {
+ 	__uint128_t ret=(__uint128_t)(a)*(b);	\
+ 	(high)=ret>>64; (low)=ret;	 })
+ #   else
++      /*
+ #     define BN_UMULT_HIGH(a,b)	({	\
+ 	register BN_ULONG ret;		\
+ 	asm ("dmultu	%1,%2"		\
+@@ -298,6 +299,7 @@ extern "C" {
+ 	asm ("dmultu	%2,%3"		\
+ 	     : "=l"(low),"=h"(high)	\
+ 	     : "r"(a), "r"(b));
++      */
+ #    endif
+ #  endif
+ # endif		/* cpu */
