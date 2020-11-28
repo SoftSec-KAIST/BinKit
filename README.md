@@ -95,13 +95,83 @@ $ scripts/link_toolchains.sh  # link base toolchain
 To undo the linking, please check `scripts/unlink_toolchains.sh`
 
 ### 4. Build dataset
-Please configure variables in `compile_packages.sh` and run below. *NOTE* that
-some combination of options would not be compiled.
+Please configure variables in `compile_packages.sh` and run below. The script
+automatically downloads the source code of GNU packages, and compiles them to
+make all the dataset. However, it may take too much time to create all of them.
 
-```/bin/bash
+- *NOTE* that it takes *SIGNIFIACNT* time.
+- *NOTE* that some packages would not be compiled for some compiler options.
+
+```bash
 $ scripts/install_gnu_deps.sh # install default packages for dataset compilation
 $ ./compile_packages.sh
 ```
+
+### 4-1. Build dataset (manual)
+
+You can download the source code of GNU packages of your interest as below.
+- Please check step 1 before running the command.
+- You must give *ABSOLUTE PATH* for `--base_dir`.
+
+```bash
+$ source scripts/env
+$ python gnu_compile_script.py \
+    --base_dir "/home/dongkwan/binkit/dataset/gnu" \
+    --num_jobs 8 \
+    --whitelist "config/whitelist.txt" \
+    --download
+```
+
+You can compile only the packages or compiler options of your interest as below.
+
+```bash
+$ source scripts/env
+$ python gnu_compile_script.py \
+    --base_dir "/home/dongkwan/binkit/dataset/gnu" \
+    --num_jobs 8 \
+    --config "config/normal.yml" \
+    --whitelist "config/whitelist.txt"
+```
+
+You can check the compiled binaries as below.
+
+```bash
+$ source scripts/env
+$ python compile_checker.py \
+    --base_dir "/home/dongkwan/binkit/dataset/gnu" \
+    --num_jobs 8 \
+    --config "config/normal.yml"
+```
+
+For more details, please check `compile_packages.sh`
+
+# Issues
+
+### Tested environment
+We ran all our experiments on a server equipped with four Intel Xeon E7-8867v4
+2.40 GHz CPUs (total 144 cores), 896 GB DDR4 RAM, and 4 TB SSD. We setup Ubuntu
+16.04 on the server.
+
+### Tested python version
+- Python 3.8.0
+
+### Running example
+
+The time spent for running the below script took `7` hours on our machine.
+
+```bash
+$ python gnu_compile_script.py \
+    --base_dir "/home/dongkwan/binkit/dataset/gnu" \
+    --num_jobs 72 \
+    --config "config/normal.yml" \
+    --whitelist "config/whitelist.txt"
+```
+
+### Compliation failure
+
+If compilation fails, you may have to adjust the number of jobs for parallel
+processing in the step 1, which is machine-dependent.
+
 
 # Authors
 This project has been conducted by the below authors at KAIST.
