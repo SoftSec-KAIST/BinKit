@@ -8,9 +8,9 @@ currently tested this code in Ubuntu 16.04.
 For more details, please check [our
 paper](https://0xdkay.me/pub/2020/kim-arxiv2020.pdf).
 
-# BCSA tool
-For a BCSA tool, TikNib, please check
-[here](https://github.com/SoftSec-KAIST/TikNib).
+# BCSA tool and Ground Truth Building
+For a BCSA tool and ground truth building, please check
+[TikNib](https://github.com/SoftSec-KAIST/TikNib).
 
 ## Pre-compiled dataset and toolchain
 You can download our dataset and toolchain as below. The link will be changed to
