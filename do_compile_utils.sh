@@ -287,8 +287,9 @@ function do_compile()
 
 
     AUTO="autoconf"
-    #CONF="./configure --build=x86_64-linux-gnu ${CMD}"
-    CONF="./configure --prefix=\"${PWD}/gogo\" --build=x86_64-linux-gnu ${CMD}"
+    # for debug
+    #CONF="./configure --prefix=\"${PWD}/gogo\" --build=x86_64-linux-gnu ${CMD}"
+    CONF="./configure --build=x86_64-linux-gnu ${CMD}"
     MAKE="make -j ${NUM_JOBS} -l ${MAX_JOBS}"
     # make install to filter out unnecessary elf files
     INS="make install"
@@ -332,8 +333,9 @@ function do_compile()
 
     # -------- file check -----------------
     CNT=0
-    #tmp_list=`find . -type f -executable -exec file {} \; 2>/dev/null \
-        tmp_list=`find "${PWD}/gogo" -type f -executable -exec file {} \; 2>/dev/null \
+    # for debug
+    #tmp_list=`find "${PWD}/gogo" -type f -executable -exec file {} \; 2>/dev/null \
+    tmp_list=`find . -type f -executable -exec file {} \; 2>/dev/null \
         | grep -v "ERROR" \
         | grep "${ELFTYPE}" | grep "${ARCHTYPE}" \
         | cut -d ":" -f 1 | grep -v "\\.o$"`

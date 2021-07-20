@@ -301,8 +301,8 @@ if __name__ == "__main__":
 
     # make the filename as suffix of compiled binaries
     suffix = "_" + os.path.splitext(os.path.basename(opts.config))[0]
-    base_dir = os.path.join(opts.base_dir, "gnu" + suffix)
-    src_dir, out_dir, log_dir = get_dirs(base_dir)
+    base_dir = opts.base_dir
+    src_dir, out_dir, log_dir = get_dirs(opts.base_dir, suffix)
     os.makedirs(src_dir, exist_ok=True)
     os.makedirs(out_dir, exist_ok=True)
     os.makedirs(log_dir, exist_ok=True)
@@ -312,7 +312,7 @@ if __name__ == "__main__":
     logger.info("log directory    : %s", log_dir)
 
     with open(opts.config, "r") as f:
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
 
     opti_list = config["opti"]
     arch_list = config["arch"]

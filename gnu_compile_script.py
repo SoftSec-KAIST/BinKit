@@ -154,7 +154,7 @@ def download_packages(src_dir, log_dir, whitelist=[]):
 
 def list_packages(src_dir, out_dir, log_dir, whitelist=[]):
     src_dir = os.path.abspath(src_dir)
-    files = sorted(glob.glob("{0}/*/*.tar.*".format(src_dir)))
+    files = sorted(glob.glob("{0}/*/*.tar*".format(src_dir)))
     packages = list(
         map(
             lambda x: {
@@ -244,6 +244,7 @@ def compile_package(
                 ]
             )
             cmds.append(cmd)
+            print(cmd)
 
     # using command line parallel is much faster than pytho multiprocessing.
     fname = os.path.join(gettmpdir(), "gnu_compile_script_cmds.txt")
@@ -385,7 +386,7 @@ if __name__ == "__main__":
 
     # abs_dir = os.path.dirname(os.path.abspath(__file__))
     with open(opts.config, "r") as f:
-        config = yaml.load(f, Loader=yaml.Loader)
+        config = yaml.safe_load(f)
 
     opti_list = config["opti"]
     arch_list = config["arch"]
