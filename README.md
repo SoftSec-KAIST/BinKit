@@ -145,6 +145,16 @@ $ python compile_checker.py \
 
 For more details, please check `compile_packages.sh`
 
+### 4-2. Build dataset with customized options
+
+To build datasets by customizing options, you can make your own configuration
+file (`.yml`) and select target compiler options. You can check the format in
+the existing sample files in the `/config` directory. Here, please make sure
+that the name of your config file is not included in the blacklist in the
+[compilation
+script](/SoftSec-KAIST/BinKit/blob/master/do_compile_utils.sh#L347).
+
+
 # Issues
 
 ### Tested environment
