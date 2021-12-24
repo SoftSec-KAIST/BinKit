@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup default tool path. All tools will be located here.
-PROJ_ROOT="$HOME/binkit/"
+PROJ_ROOT="$HOME/BinKit/"
 TOOL_PATH="$HOME/tools/"
 export PROJ_ROOT TOOL_PATH
 mkdir -p "$TOOL_PATH"
