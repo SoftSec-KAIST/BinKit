@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 if [ -z "$TOOL_PATH" ]; then
     echo "env \$TOOL_PATH should be defined first."
     echo "source scripts/env.sh"
@@ -6,12 +6,16 @@ if [ -z "$TOOL_PATH" ]; then
 fi
 
 declare -a VERSIONS=(
-    "4.0"
-    "5.0"
-    "6.0"
-    "7.0"
-    "8.0"
-    "9.0"
+    "4.0.0"
+    "5.0.2"
+    "6.0.1"
+    "7.0.1"
+    "8.0.0"
+    "9.0.1"
+    "10.0.1"
+    "11.0.1"
+    "12.0.1"
+    "13.0.0"
 )
 SYSNAME="x86_64-linux-gnu-ubuntu-16.04"
 CLANG_ROOT="$TOOL_PATH/clang"
@@ -23,17 +27,16 @@ cd "$CLANG_ROOT"
 
 for VER in "${VERSIONS[@]}"; do
     echo "Setting clang-${VER} =========="
-    CLANG_URL="http://releases.llvm.org/${VER}.0/clang+llvm-${VER}.0-"
+    CLANG_URL="http://releases.llvm.org/${VER}/clang+llvm-${VER}-"
     CLANG_TAR="${CLANG_ROOT}/clang-${VER}.tar.xz"
-    CLANG_PATH="${CLANG_ROOT}/clang-${VER}"
+    CLANG_PATH="${CLANG_ROOT}/clang-${VER%.*}"
+    if [[ "${VER%%\.*}" -gt 8 ]]; then
+	CLANG_URL="https://github.com/llvm/llvm-project/releases/download/llvmorg-${VER}/clang+llvm-${VER}-"
+    fi
 
     if [[ ! -d "$CLANG_PATH" ]]; then
         if [[ ! -f "$CLANG_TAR" ]]; then
-            if [[ "$VER" =~ 5.0 ]]; then
-                wget "${CLANG_URL}linux-x86_64-ubuntu16.04.tar.xz" -O "$CLANG_TAR"
-            else
-                wget "${CLANG_URL}${SYSNAME}.tar.xz" -O "$CLANG_TAR"
-            fi
+            wget "${CLANG_URL}${SYSNAME}.tar.xz" -O "$CLANG_TAR"
         fi
 
         CLANG_VER_DIR=$(tar tf ${CLANG_TAR} | head -n 1)
