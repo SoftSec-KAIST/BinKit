@@ -1,20 +1,20 @@
 import os
+import re
 import string, random
 
 from subprocess import Popen, PIPE
 
 
-RESTR = (
+RE_PATTERN = (
     "(.*)_"
-    + "(gcc-4.9.4|gcc-5.5.0|gcc-6.4.0|gcc-7.3.0|gcc-8.2.0|"
-    + "clang-4.0|clang-5.0|clang-6.0|clang-7.0|"
-    + "clang-obfus-fla|clang-obfus-sub|clang-obfus-bcf|"
-    + "clang-obfus-all|clang-obfus-all-2|"
+    + "(gcc-[.0-9]+|clang-[.0-9]+|"
+    + "clang-obfus-[-a-z2]+|"
     + "gcc|clang)_"
-    + "(x86_32|x86_64|arm_32|arm_64|mips_32|mips_64|mipseb_32|mipseb_64)_"
+    + "((?:x86|arm|mips|mipseb|ppc)_(?:32|64))_"
     + "(O0|O1|O2|O3|Os)_"
     + "(.*)"
 )
+RESTR = re.compile(RE_PATTERN)
 
 
 def system(cmd):

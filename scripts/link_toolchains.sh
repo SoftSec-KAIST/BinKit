@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 if [ -z "$TOOL_PATH" ]; then
     echo "env \$TOOL_PATH should be defined first."
     echo "source scripts/env.sh"
@@ -67,7 +67,7 @@ for ARCH_PREFIX in "${archlist[@]}"; do
     eval "$CMD"
 
     # give write permission to set symbolic link
-    chmod o+w -R "${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}"
+    chmod ug+w -R "${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}"
 
     # some compilation environment do not search sysroot.
     CWD=$(pwd)

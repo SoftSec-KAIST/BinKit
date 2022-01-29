@@ -101,7 +101,7 @@ def check_dir(path, config, check_arch=False, show_opti=True):
             b, b_type = b.split(":")
 
         base_name = os.path.basename(b)
-        matches = re.search(RESTR, base_name).groups()
+        matches = RESTR.search(base_name).groups()
         package, compiler, arch, opti, bin_name = matches
         bin_name = bin_name.replace(".elf", "")
 
@@ -197,12 +197,12 @@ def check_duplicates(out_dir, config):
     for bins in duplicates:
         # only leave shortest name binaries among the duplicates
         bins = sorted(
-            bins, key=lambda x: len(re.search(RESTR, os.path.basename(x)).groups()[-1])
+            bins, key=lambda x: len(RESTR.search(os.path.basename(x)).groups()[-1])
         )
         for b in bins[1:]:
             base_name = os.path.basename(b)
             dir_name = os.path.dirname(b)
-            matches = re.search(RESTR, base_name).groups()
+            matches = RESTR.search(base_name).groups()
             package, compiler, arch, opti, bin_name = matches
 
             option_lists = [opti_list, arch_list, compiler_list]
