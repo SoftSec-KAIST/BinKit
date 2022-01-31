@@ -23,6 +23,11 @@ echo "COMPILING: ${PACKAGE_NAME}-${SUFFIX}"
 echo "OUTDIR: ${OUTDIR}"
 echo "OPTIONS: ${OPTIONS}"
 
+declare -a unused_arch_list=(
+    "ppc_32"
+    "ppc_64"
+)
+
 declare -a arch_list=(
     "x86_32"
     "x86_64"
@@ -98,6 +103,8 @@ function doit()
     ARCH_MIPS64="mips64el-ubuntu-linux-gnu"
     ARCH_MIPSEB="mips-ubuntu-linux-gnu"
     ARCH_MIPSEB64="mips64-ubuntu-linux-gnu"
+    ARCH_POWERPC="powerpc-ubuntu-linux-gnu"
+    ARCH_POWERPC64="powerpc64-ubuntu-linux-gnu"
 
     if [[ $COMPILER =~ "gcc" ]]; then
         COMPVER=${COMPILER#"gcc-"}
@@ -148,6 +155,10 @@ function doit()
         OPTIONS="${OPTIONS} -m32"
     elif [[ $ARCH == "x86_64" ]]; then
         ARCH_PREFIX=$ARCH_X8664
+    if [[ $ARCH == "ppc_32" ]]; then
+        ARCH_PREFIX=$ARCH_POWERPC
+    elif [[ $ARCH == "ppc_64" ]]; then
+        ARCH_PREFIX=$ARCH_POWERPC64
     fi
 
     export PATH="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/bin:${PATH}"

@@ -14,6 +14,8 @@ declare -a archlist=(
     "mips64el-ubuntu-linux-gnu"
     "mips-ubuntu-linux-gnu"
     "mips64-ubuntu-linux-gnu"
+#   "powerpc-ubuntu-linux-gnu"
+#   "powerpc64-ubuntu-linux-gnu"
 )
 
 declare -a slavelist=(
@@ -56,6 +58,7 @@ for ARCH_PREFIX in "${archlist[@]}"; do
     SYSROOT="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/${ARCH_PREFIX}/sysroot"
 
     echo "${ARCH_PREFIX}"
+    sudo update-alternatives --remove-all ${ARCH_PREFIX}-gcc
     CMD="sudo update-alternatives --force --install /usr/bin/${ARCH_PREFIX}-gcc \
     ${ARCH_PREFIX}-gcc ${TOOLCHAIN_PATH}-gcc 100"
 

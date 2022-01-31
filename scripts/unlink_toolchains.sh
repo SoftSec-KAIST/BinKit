@@ -8,6 +8,8 @@ declare -a archlist=(
     "mips64el-ubuntu-linux-gnu"
     "mips-ubuntu-linux-gnu"
     "mips64-ubuntu-linux-gnu"
+#   "powerpc-ubuntu-linux-gnu"
+#   "powerpc64-ubuntu-linux-gnu"
 )
 
 for ARCH_PREFIX in "${archlist[@]}"; do

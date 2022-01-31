@@ -123,6 +123,8 @@ function do_compile()
     ARCH_MIPS64="mips64el-ubuntu-linux-gnu"
     ARCH_MIPSEB="mips-ubuntu-linux-gnu"
     ARCH_MIPSEB64="mips64-ubuntu-linux-gnu"
+    ARCH_POWERPC="powerpc-ubuntu-linux-gnu"
+    ARCH_POWERPC64="powerpc64-ubuntu-linux-gnu"
 
     local OPTIONS=""
     local EXTRA_CFLAGS=""
@@ -238,6 +240,16 @@ function do_compile()
         #ARCHTYPE="MIPS, MIPS64 rel2"
         ARCHTYPE="MIPS, MIPS64"
 
+        # ========= powerpc =============
+    elif [[ $ARCH == "ppc_32" ]]; then
+        ARCH_PREFIX=$ARCH_POWERPC
+        ELFTYPE="ELF 32-bit MSB"
+	ARCHTYPE="PowerPC or cisco 4500"
+
+    elif [[ $ARCH == "ppc_64" ]]; then
+        ARCH_PREFIX=$ARCH_POWERPC64
+        ELFTYPE="ELF 64-bit MSB"
+	ARCHTYPE="64-bit PowerPC or cisco 7500"
     fi
 
     export PATH="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/bin:${PATH}"
