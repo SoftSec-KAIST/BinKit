@@ -77,5 +77,15 @@ for ARCH_PREFIX in "${archlist[@]}"; do
     ln -sf ../sysroot/lib/* ./
     ln -sf ../sysroot/usr/lib/* ./
     cd $CWD
+
+    # powerpc-ubuntu-linux-gnu-ld looks for lib32 first and fails
+    if [[ ${ARCH_PREFIX} == "powerpc-ubuntu-linux-gnu" ]]; then
+	LIB32_DIR="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/${ARCH_PREFIX}/lib32"
+        mkdir -p "${LIB32_DIR}"
+	pushd "${LIB32_DIR}" >/dev/null
+	ln -sf ../sysroot/lib/* ./
+        ln -sf ../sysroot/usr/lib/* ./
+	popd >/dev/null
+    fi
 done
 
