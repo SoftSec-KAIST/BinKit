@@ -162,7 +162,7 @@ function doit()
         OPTIONS="${OPTIONS} -m32"
     elif [[ $ARCH == "x86_64" ]]; then
         ARCH_PREFIX=$ARCH_X8664
-    if [[ $ARCH == "ppc_32" ]]; then
+    elif [[ $ARCH == "ppc_32" ]]; then
         ARCH_PREFIX=$ARCH_POWERPC
     elif [[ $ARCH == "ppc_64" ]]; then
         ARCH_PREFIX=$ARCH_POWERPC64

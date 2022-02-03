@@ -58,7 +58,6 @@ for ARCH_PREFIX in "${archlist[@]}"; do
     SYSROOT="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/${ARCH_PREFIX}/sysroot"
 
     echo "${ARCH_PREFIX}"
-    sudo update-alternatives --remove-all ${ARCH_PREFIX}-gcc
     CMD="sudo update-alternatives --force --install /usr/bin/${ARCH_PREFIX}-gcc \
     ${ARCH_PREFIX}-gcc ${TOOLCHAIN_PATH}-gcc 100"
 
