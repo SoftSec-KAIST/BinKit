@@ -6,6 +6,14 @@ if [ -z "$TOOL_PATH" ]; then
 fi
 
 declare -a VERSIONS=(
+    # Below versions are used in the paper.
+    # "4.0.0"
+    # "5.0.0"
+    # "6.0.0"
+    # "7.0.0"
+    # "8.0.0"
+    # "9.0.0"
+
     "4.0.0"
     "5.0.2"
     "6.0.1"
@@ -35,6 +43,9 @@ for VER in "${VERSIONS[@]}"; do
     fi
 
     if [[ ! -d "$CLANG_PATH" ]]; then
+        # If the compilation fails, check if the href contains a correct SYSNAME.
+        # For example, the link of 5.0.0 or 5.0.1 contains a SYSNAME,
+        # "linux-x86_64-ubuntu16.04" instead of "x86_64-linux-gnu-ubuntu-16.04".
         if [[ ! -f "$CLANG_TAR" ]]; then
             wget "${CLANG_URL}${SYSNAME}.tar.xz" -O "$CLANG_TAR"
         fi
