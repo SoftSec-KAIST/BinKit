@@ -193,14 +193,16 @@ This project has been conducted by the below authors at KAIST.
 
 # Citation
 We would appreciate if you consider citing [our
-paper](https://0xdkay.me/pub/2020/kim-arxiv2020.pdf) when using BinKit.
+paper](https://ieeexplore.ieee.org/document/9813408) when using BinKit.
 ```bibtex
-@article{kim:2020:binkit,
-  author = {Dongkwan Kim and Eunsoo Kim and Sang Kil Cha and Sooel Son and Yongdae Kim},
-  title = {Revisiting Binary Code Similarity Analysis using Interpretable Feature Engineering and Lessons Learned},
-  eprint={2011.10749},
-  archivePrefix={arXiv},
-  primaryClass={cs.SE}
-  year = {2020},
+@ARTICLE{kim:tse:2022,
+  author={Kim, Dongkwan and Kim, Eunsoo and Cha, Sang Kil and Son, Sooel and Kim, Yongdae},
+  journal={IEEE Transactions on Software Engineering}, 
+  title={Revisiting Binary Code Similarity Analysis using Interpretable Feature Engineering and Lessons Learned}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-23},
+  doi={10.1109/TSE.2022.3187689}
 }
 ```
