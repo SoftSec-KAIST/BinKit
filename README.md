@@ -31,6 +31,17 @@ with `git-lfs`. Please use `GIT_LFS_SKIP_SMUDGE=1` to skip the download.)
 Below data is only used for our evaluation.
 - [ASE dataset](https://drive.google.com/file/d/1MwXHRXjuPoQJAON6SZVoKcK6Xr2NMHdF/view?usp=sharing)
 
+### `.pickle` Files
+- [Normal dataset `.pickle`](https://drive.google.com/file/d/1GjVoSXPvc7oTMJM4bIpmIOd6If7PTuOm/view?usp=sharing)
+- [SizeOpt dataset `.pickle`](https://drive.google.com/file/d/1MeT9Z5aaYf0kAtGxaCnHk8nyXJddPfqC/view?usp=sharing)
+- [Noinline dataset `.pickle`](https://drive.google.com/file/d/1bXj2ZjnNOGAijleBh5Tki1XZLG2i1Hng/view?usp=sharing)
+- [PIE dataset `.pickle`](https://drive.google.com/file/d/1mVzTKeJ4OzH1fyuSCn-_CPF8BmFMkAEw/view?usp=sharing)
+- [LTO dataset `.pickle`](https://drive.google.com/file/d/1ELxkiapNnMrjfcMdltWvritwBH9pBJ7o/view?usp=sharing)
+- [Obfus dataset `.pickle`](https://drive.google.com/file/d/12r4kdMvZYE4zTD3f4FDA-kxDOy8GU5ZL/view?usp=sharing)
+
+Below data is only used for our evaluation.
+- [ASE dataset `.pickle`](https://drive.google.com/file/d/1NbhNRBpV5_evRXrNeUReBU7ju9bEtKxq/view?usp=sharing)
+
 ### Toolchain
 - [tools](https://drive.google.com/file/d/1Ar8CT4xZceT083jMy2dU5q-CgcMHqrQ0/view?usp=sharing)
 
