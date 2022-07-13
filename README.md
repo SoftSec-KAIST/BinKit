@@ -32,6 +32,7 @@ Below data is only used for our evaluation.
 - [ASE dataset](https://drive.google.com/file/d/1MwXHRXjuPoQJAON6SZVoKcK6Xr2NMHdF/view?usp=sharing)
 
 ### `.pickle` Files
+These files include the extracted features and useful information for each function.
 - [Normal dataset `.pickle`](https://drive.google.com/file/d/1GjVoSXPvc7oTMJM4bIpmIOd6If7PTuOm/view?usp=sharing)
 - [SizeOpt dataset `.pickle`](https://drive.google.com/file/d/1MeT9Z5aaYf0kAtGxaCnHk8nyXJddPfqC/view?usp=sharing)
 - [Noinline dataset `.pickle`](https://drive.google.com/file/d/1bXj2ZjnNOGAijleBh5Tki1XZLG2i1Hng/view?usp=sharing)
