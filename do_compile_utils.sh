@@ -256,6 +256,8 @@ function do_compile()
     SYSROOT="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/${ARCH_PREFIX}/sysroot"
     SYSTEM="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/${ARCH_PREFIX}/sysroot/usr/include"
 
+    EXTRA_CFLAGS="${EXTRA_CFLAGS} -fcommon"
+
     OPTIONS="${OPTIONS} -${OPTI_LEVEL}"
     if [[ $COMPILER =~ "gcc" ]]; then
         CMD=""
