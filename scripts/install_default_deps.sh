@@ -14,6 +14,11 @@ declare -a PACKAGES=(
     help2man
     libtool
     libtool-bin
+    bison
+    flex
+    unzip
+    gperf
+    libncurses-dev
 )
 
 for PACKAGE in "${PACKAGES[@]}"; do
