@@ -411,8 +411,17 @@ CNT=0
 # Hope one of below would work. If there exists a compiled binary after one, we
 # do not proceed more. The CNT variable reprsents the number of compiled
 # binaries.
-do_compile "" ""
-do_compile "" "AUTO"
-do_compile "CCTARGET" ""
-do_compile "CCTARGET" "AUTO"
+# For clang, it is better to build with CCTARGET to fully build the package.
+# clang without CCTARGET often builds fewer binaries.
 
+if [[ $COMPILER =~ "gcc" ]]; then
+    do_compile "" ""
+    do_compile "" "AUTO"
+    do_compile "CCTARGET" ""
+    do_compile "CCTARGET" "AUTO"
+elif [[ $COMPILER =~ "clang" ]]; then
+    do_compile "CCTARGET" ""
+    do_compile "CCTARGET" "AUTO"
+    do_compile "" ""
+    do_compile "" "AUTO"
+fi
