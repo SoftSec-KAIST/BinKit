@@ -268,7 +268,7 @@ function do_compile()
         CMD="--host=\"${ARCH_PREFIX}\""
         CMD="${CMD} CFLAGS=\""
         CMD="${CMD} -isysroot ${SYSROOT} -isystem ${SYSTEM} -I${SYSTEM}"
-        CMD="${CMD} ${OPTIONS}\""
+        CMD="${CMD} ${OPTIONS} ${EXTRA_CFLAGS}\""
         CMD="${CMD} LDFLAGS=\"${OPTIONS} ${EXTRA_LDFLAGS}\""
         CMD="${CMD} AR=\"${ARCH_PREFIX}-gcc-ar\""
         CMD="${CMD} RANLIB=\"${ARCH_PREFIX}-gcc-ranlib\""
