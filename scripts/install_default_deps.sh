@@ -18,6 +18,7 @@ declare -a PACKAGES=(
     flex
     unzip
     gperf
+    gcc-multilib
     libncurses-dev
 )
 
