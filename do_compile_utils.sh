@@ -256,13 +256,19 @@ function do_compile()
     SYSROOT="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/${ARCH_PREFIX}/sysroot"
     SYSTEM="${TOOL_PATH}/${ARCH_PREFIX}-${COMPVER}/${ARCH_PREFIX}/sysroot/usr/include"
 
+    EXTRA_CFLAGS="${EXTRA_CFLAGS} -fcommon"
+
+    if [ $ARCH == "x86_64" ]; then
+        local EXTRA_LDFLAGS="-L${EXTRA_DEP_PATH}/install_x86_64/lib -luuid"
+    fi
+
     OPTIONS="${OPTIONS} -${OPTI_LEVEL}"
     if [[ $COMPILER =~ "gcc" ]]; then
         CMD=""
         CMD="--host=\"${ARCH_PREFIX}\""
         CMD="${CMD} CFLAGS=\""
         CMD="${CMD} -isysroot ${SYSROOT} -isystem ${SYSTEM} -I${SYSTEM}"
-        CMD="${CMD} ${OPTIONS}\""
+        CMD="${CMD} ${OPTIONS} ${EXTRA_CFLAGS}\""
         CMD="${CMD} LDFLAGS=\"${OPTIONS} ${EXTRA_LDFLAGS}\""
         CMD="${CMD} AR=\"${ARCH_PREFIX}-gcc-ar\""
         CMD="${CMD} RANLIB=\"${ARCH_PREFIX}-gcc-ranlib\""
@@ -405,8 +411,17 @@ CNT=0
 # Hope one of below would work. If there exists a compiled binary after one, we
 # do not proceed more. The CNT variable reprsents the number of compiled
 # binaries.
-do_compile "" ""
-do_compile "" "AUTO"
-do_compile "CCTARGET" ""
-do_compile "CCTARGET" "AUTO"
+# For clang, it is better to build with CCTARGET to fully build the package.
+# clang without CCTARGET often builds fewer binaries.
 
+if [[ $COMPILER =~ "gcc" ]]; then
+    do_compile "" ""
+    do_compile "" "AUTO"
+    do_compile "CCTARGET" ""
+    do_compile "CCTARGET" "AUTO"
+elif [[ $COMPILER =~ "clang" ]]; then
+    do_compile "CCTARGET" ""
+    do_compile "CCTARGET" "AUTO"
+    do_compile "" ""
+    do_compile "" "AUTO"
+fi

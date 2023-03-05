@@ -33,7 +33,6 @@ libtool
 libunistring
 lightning
 macchanger
-ncurses
 nettle
 osip
 patch
