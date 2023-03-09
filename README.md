@@ -239,7 +239,7 @@ processing in the step 1, which is machine-dependent.
 In Binkit 2.0 dataset, the gsl package misses 8 binaries with Ofast option due
 to compiler bugs. Clang-8 and clang-9 induce compiler hang bug when compiling
 the gsl package for 32bit ARM with Ofast option. We reported this issue to
-bug-gsl and llvm-project respectively. However, bug-gsl did not replied, and the
+bug-gsl and llvm-project respectively. However, bug-gsl did not reply, and the
 llvm-project replied that these versions are not currently supported. The bug
 reporting links are respectively as follows:
 [bug-gsl](https://lists.gnu.org/archive/html/bug-gsl/2023-02/msg00000.html),
