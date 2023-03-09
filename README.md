@@ -7,17 +7,18 @@ options of 8 architectures, 6 optimization levels, and 23 compilers. It includes
 371,928 binaries.
 
 The main improvements of the latest version of BinKit compared to the paper
-version of BinKit are as follows: Additional support for relatively newer compiler versions for major
-compilation options, and support for Ofast optimization options.
+version of BinKit are as follows: Additional support for relatively newer
+compiler versions for major compilation options, and support for Ofast
+optimization options.
 
-In particular, gcc extends from gcc-8 to gcc-11, and clang extends from clang-9
-to clang-13. Currently, a total of 6 optimization options (O0, O1, O2, O3, Os,
+In particular, BinKit now includes GCC and Clang versions up to 11 and 13,
+respectively. Currently, a total of 6 optimization options (O0, O1, O2, O3, Os,
 Ofast) are supported. see the [Currently supported compile
 options](https://github.com/SoftSec-KAIST/BinKit#currently-supported-compile-options)
 section below for more detailed options.
 
-In Fastopt dataset, gsl package is missing 8 binaries due to compiler bugs. See
-the [Missing binaries](https://github.com/SoftSec-KAIST/BinKit#Missing-binaries)
+In Binkit 2.0 dataset, the gsl package misses 8 binaries with Ofast option due
+to compiler bugs. See the [Missing binaries](https://github.com/SoftSec-KAIST/BinKit#Missing-binaries)
 part of the [Issues](https://github.com/topcue/tmp#issues) section for more
 information.
 
@@ -44,9 +45,9 @@ with `git-lfs`. Please use `GIT_LFS_SKIP_SMUDGE=1` to skip the download.)
 
 - [BinKit 2.0 dataset](https://drive.google.com/file/d/1TrjFnv6BMpVEXYukVxrhlQ78S0NPKEXa/view?usp=share_link)
 
+### Dataset (old)
 Below datasets are for reproduction of paper
 
-### Dataset
 - [Normal dataset](https://drive.google.com/file/d/1K9ef-OoRBr0X5u8g2mlnYqh9o1i6zFij/view?usp=sharing)
 - [SizeOpt dataset](https://drive.google.com/file/d/1QgwbEfd8vdzg5glNZFL7dg4l4hrkoWO3/view?usp=sharing)
 - [Noinline dataset](https://drive.google.com/file/d/1wt7GY-DDp8J_2zeBBVUrcfWIyerg_xLO/view?usp=sharing)
@@ -235,10 +236,14 @@ processing in the step 1, which is machine-dependent.
 
 ### Missing binaries
 
-In Fastopt dataset, the gsl package is missing 8 binaries due to compilation
-failure. Clang-8 and clang-9 induce compiler hang bug  when compiling gsl
-package for 32bit ARM. We reported this issue to bug-gsl and llvm-project, but
-we received an answer that these versions are not currently supported.
+In Binkit 2.0 dataset, the gsl package misses 8 binaries with Ofast option due
+to compiler bugs. Clang-8 and clang-9 induce compiler hang bug when compiling
+the gsl package for 32bit ARM with Ofast option. We reported this issue to
+bug-gsl and llvm-project respectively. However, bug-gsl did not replied, and the
+llvm-project replied that these versions are not currently supported. The bug
+reporting links are respectively as follows:
+[bug-gsl](https://lists.gnu.org/archive/html/bug-gsl/2023-02/msg00000.html),
+[llvm-project](https://github.com/llvm/llvm-project/issues/60692)
 
 # Authors
 This project has been conducted by the below authors at KAIST.
@@ -263,4 +268,5 @@ paper](https://ieeexplore.ieee.org/document/9813408) when using BinKit.
   doi={10.1109/TSE.2022.3187689}
 }
 ```
+
 
