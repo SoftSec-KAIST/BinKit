@@ -1,9 +1,31 @@
-# Description
+# BinKit 2.0
+
 BinKit is a binary code similarity analysis (BCSA) benchmark. BinKit provides
 scripts for building a cross-compiling environment, as well as the compiled
-dataset. The original dataset includes 1,352 distinct combinations of compiler
-options of 8 architectures, 5 optimization levels, and 13 compilers. We
-currently tested this code in Ubuntu 16.04.
+dataset. The current dataset includes 1,904 distinct combinations of compiler
+options of 8 architectures, 6 optimization levels, and 23 compilers. It includes
+371,928 binaries.
+
+The main improvements of the latest version of BinKit compared to the paper
+version of BinKit are as follows: Additional support for relatively newer
+compiler versions for major compilation options, and support for Ofast
+optimization option.
+
+In particular, BinKit now includes GCC and Clang versions up to 11 and 13,
+respectively. Currently, a total of 6 optimization options (O0, O1, O2, O3, Os,
+Ofast) are supported. see the [Currently supported compile
+options](https://github.com/SoftSec-KAIST/BinKit#currently-supported-compile-options)
+section below for more detailed options.
+
+In Binkit 2.0 dataset, the gsl package misses 8 binaries with Ofast option due
+to compiler bugs. See the [Missing binaries](https://github.com/SoftSec-KAIST/BinKit#Missing-binaries)
+part of the [Issues](https://github.com/topcue/tmp#issues) section for more
+information.
+
+## BinKit 1.0 (paper version)
+The original dataset includes 1,352 distinct combinations of compiler options of
+8 architectures, 5 optimization levels, and 13 compilers. It includes 243,128
+binaries. We tested this code in Ubuntu 16.04.
 
 For more details, please check [our
 paper](https://0xdkay.me/pub/2020/kim-arxiv2020.pdf).
@@ -19,7 +41,13 @@ You can download our dataset and toolchain as below. The link will be changed to
 [//]: # (Cloning this repository also downloads below pre-compiled dataset and toolchain
 with `git-lfs`. Please use `GIT_LFS_SKIP_SMUDGE=1` to skip the download.)
 
-### Dataset
+### Dataset (latest version)
+
+- [BinKit 2.0 dataset](https://drive.google.com/file/d/1TrjFnv6BMpVEXYukVxrhlQ78S0NPKEXa/view?usp=share_link)
+
+### Dataset (old)
+Below datasets are for reproduction of paper
+
 - [Normal dataset](https://drive.google.com/file/d/1K9ef-OoRBr0X5u8g2mlnYqh9o1i6zFij/view?usp=sharing)
 - [SizeOpt dataset](https://drive.google.com/file/d/1QgwbEfd8vdzg5glNZFL7dg4l4hrkoWO3/view?usp=sharing)
 - [Noinline dataset](https://drive.google.com/file/d/1wt7GY-DDp8J_2zeBBVUrcfWIyerg_xLO/view?usp=sharing)
@@ -63,23 +91,35 @@ Below data is only used for our evaluation.
 - O2
 - O3
 - Os
+- Ofast
 
 ### Compilers
-- gcc-4.9.4
-- gcc-5.5.0
-- gcc-6.4.0
-- gcc-7.3.0
-- gcc-8.2.0
-- clang-4.0
-- clang-5.0
-- clang-6.0
-- clang-7.0
-- clang-8.0
-- clang-9.0
-- clang-obfus-fla (Obfuscator-LLVM - FLA)
-- clang-obfus-sub (Obfuscator-LLVM - SUB)
-- clang-obfus-bcf (Obfuscator-LLVM - BCF)
-- clang-obfus-all (Obfuscator-LLVM - FLA + SUB + BCF)
+- gcc
+  - gcc-4.9.4
+  - gcc-5.5.0
+  - gcc-6.4.0
+  - gcc-6.5.0
+  - gcc-7.3.0
+  - gcc-8.2.0
+  - gcc-9.4.0
+  - gcc-10.3.0
+  - gcc-11.2.0
+- clang
+  - clang-4.0.0
+  - clang-5.0.2
+  - clang-6.0.1
+  - clang-7.0.1
+  - clang-8.0.0
+  - clang-9.0.1
+  - clang-10.0.1
+  - clang-11.0.1
+  - clang-12.0.1
+  - clang-13.0.0
+- clang-obfus
+  - clang-obfus-fla (Obfuscator-LLVM - FLA)
+  - clang-obfus-sub (Obfuscator-LLVM - SUB)
+  - clang-obfus-bcf (Obfuscator-LLVM - BCF)
+  - clang-obfus-all (Obfuscator-LLVM - FLA + SUB + BCF)
 
 # How to use
 ### 1. Configure the environment in `scripts/env.sh`
@@ -126,7 +166,7 @@ You can download the source code of GNU packages of your interest as below.
 - You must give *ABSOLUTE PATH* for `--base_dir`.
 
 ```bash
-$ source scripts/env
+$ source scripts/env.sh
 $ python gnu_compile_script.py \
     --base_dir "/home/dongkwan/binkit/dataset/gnu" \
     --num_jobs 8 \
@@ -137,7 +177,7 @@ $ python gnu_compile_script.py \
 You can compile only the packages or compiler options of your interest as below.
 
 ```bash
-$ source scripts/env
+$ source scripts/env.sh
 $ python gnu_compile_script.py \
     --base_dir "/home/dongkwan/binkit/dataset/gnu" \
     --num_jobs 8 \
@@ -148,7 +188,7 @@ $ python gnu_compile_script.py \
 You can check the compiled binaries as below.
 
 ```bash
-$ source scripts/env
+$ source scripts/env.sh
 $ python compile_checker.py \
     --base_dir "/home/dongkwan/binkit/dataset/gnu" \
     --num_jobs 8 \
@@ -194,6 +234,16 @@ $ python gnu_compile_script.py \
 If compilation fails, you may have to adjust the number of jobs for parallel
 processing in the step 1, which is machine-dependent.
 
+### Missing binaries
+
+In Binkit 2.0 dataset, the gsl package misses 8 binaries with Ofast option due
+to compiler bugs. Clang-8 and clang-9 induce compiler hang bug when compiling
+the gsl package for 32bit ARM with Ofast option. We reported this issue to
+bug-gsl and llvm-project respectively. However, bug-gsl did not reply, and the
+llvm-project replied that these versions are not currently supported. The bug
+reporting links are respectively as follows:
+[bug-gsl](https://lists.gnu.org/archive/html/bug-gsl/2023-02/msg00000.html),
+[llvm-project](https://github.com/llvm/llvm-project/issues/60692)
 
 # Authors
 This project has been conducted by the below authors at KAIST.
@@ -218,3 +268,5 @@ paper](https://ieeexplore.ieee.org/document/9813408) when using BinKit.
   doi={10.1109/TSE.2022.3187689}
 }
 ```
+
+
