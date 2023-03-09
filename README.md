@@ -9,7 +9,7 @@ options of 8 architectures, 6 optimization levels, and 23 compilers. It includes
 The main improvements of the latest version of BinKit compared to the paper
 version of BinKit are as follows: Additional support for relatively newer
 compiler versions for major compilation options, and support for Ofast
-optimization options.
+optimization option.
 
 In particular, BinKit now includes GCC and Clang versions up to 11 and 13,
 respectively. Currently, a total of 6 optimization options (O0, O1, O2, O3, Os,
@@ -23,9 +23,9 @@ part of the [Issues](https://github.com/topcue/tmp#issues) section for more
 information.
 
 ## BinKit 1.0 (paper version)
-The original dataset includes 1,352 distinct combinations of compiler
-options of 8 architectures, 5 optimization levels, and 13 compilers. It includes
-243,128 binaries. We tested this code in Ubuntu 16.04.
+The original dataset includes 1,352 distinct combinations of compiler options of
+8 architectures, 5 optimization levels, and 13 compilers. It includes 243,128
+binaries. We tested this code in Ubuntu 16.04.
 
 For more details, please check [our
 paper](https://0xdkay.me/pub/2020/kim-arxiv2020.pdf).
