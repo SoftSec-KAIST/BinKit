@@ -42,7 +42,7 @@ with `git-lfs`. Please use `GIT_LFS_SKIP_SMUDGE=1` to skip the download.)
 
 ### Dataset (latest version)
 
-- [BinKit 2.0 dataset](https://o365kaist-my.sharepoint.com/:u:/g/personal/topcue1019_office_kaist_ac_kr/EW6WG23vpzBJgmZvm_yS7nsBNT7j_NQb9w7L8EF-gE11DA?e=qqsld7)
+- [BinKit 2.0 dataset](https://drive.google.com/file/d/1TrjFnv6BMpVEXYukVxrhlQ78S0NPKEXa/view?usp=share_link)
 
 Below datasets are for reproduction of paper
 
