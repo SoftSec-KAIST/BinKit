@@ -1,16 +1,33 @@
-# Description
+# BinKit 2.0
+
 BinKit is a binary code similarity analysis (BCSA) benchmark. BinKit provides
 scripts for building a cross-compiling environment, as well as the compiled
-dataset. The original dataset includes 1,352 distinct combinations of compiler
+dataset. The current dataset includes 1,904 distinct combinations of compiler
+options of 8 architectures, 6 optimization levels, and 23 compilers. It includes
+371,928 binaries.
+
+The main improvements of the latest version of BinKit compared to the paper
+version of BinKit are as follows: Additional support for relatively newer compiler versions for major
+compilation options, and support for Ofast optimization options.
+
+In particular, gcc extends from gcc-8 to gcc-11, and clang extends from clang-9
+to clang-13. Currently, a total of 6 optimization options (O0, O1, O2, O3, Os,
+Ofast) are supported. see the [Currently supported compile
+options](https://github.com/SoftSec-KAIST/BinKit#currently-supported-compile-options)
+section below for more detailed options.
+
+In Fastopt dataset, gsl package is missing 8 binaries due to compiler bugs. See
+the [Missing binaries](https://github.com/SoftSec-KAIST/BinKit#Missing-binaries)
+part of the [Issues](https://github.com/topcue/tmp#issues) section for more
+information.
+
+## BinKit 1.0 (paper version)
+The original dataset includes 1,352 distinct combinations of compiler
 options of 8 architectures, 5 optimization levels, and 13 compilers. It includes
-243,128 unique binary. We currently tested this code in Ubuntu 16.04.
+243,128 binaries. We tested this code in Ubuntu 16.04.
 
 For more details, please check [our
 paper](https://0xdkay.me/pub/2020/kim-arxiv2020.pdf).
-
-The current dataset includes 1,904 distinct combinations of compiler
-options of 8 architectures, 6 optimization levels, and 23 compilers. It includes
-371,928 unique binary.
 
 # BCSA tool and Ground Truth Building
 For a BCSA tool and ground truth building, please check
@@ -23,12 +40,15 @@ You can download our dataset and toolchain as below. The link will be changed to
 [//]: # (Cloning this repository also downloads below pre-compiled dataset and toolchain
 with `git-lfs`. Please use `GIT_LFS_SKIP_SMUDGE=1` to skip the download.)
 
+### Dataset (latest version)
+
+- [BinKit 2.0 dataset](https://o365kaist-my.sharepoint.com/:u:/g/personal/topcue1019_office_kaist_ac_kr/EW6WG23vpzBJgmZvm_yS7nsBNT7j_NQb9w7L8EF-gE11DA?e=qqsld7)
+
+Below datasets are for reproduction of paper
+
 ### Dataset
-[//]: # ([Normal dataset] https://drive.google.com/file/d/1K9ef-OoRBr0X5u8g2mlnYqh9o1i6zFij/view?usp=sharing)
-[//]: # ([SizeOpt dataset] https://drive.google.com/file/d/1QgwbEfd8vdzg5glNZFL7dg4l4hrkoWO3/view?usp=sharing)
-- [Normal dataset](https://drive.google.com/file/d/1kf1iLygPtaKt4XeT8vwAUjm1vTpWjXNn/view?usp=share_link)
-- [SizeOpt dataset](https://drive.google.com/file/d/1SY6hUwL-4xmw6gVc3QFI8FyOEnXV7GPW/view?usp=share_link)
-- [FastOpt dataset](https://drive.google.com/file/d/1ZTxongS8J3zR3chPFayGKwJeMPJxMFIJ/view?usp=share_link)
+- [Normal dataset](https://drive.google.com/file/d/1K9ef-OoRBr0X5u8g2mlnYqh9o1i6zFij/view?usp=sharing)
+- [SizeOpt dataset](https://drive.google.com/file/d/1QgwbEfd8vdzg5glNZFL7dg4l4hrkoWO3/view?usp=sharing)
 - [Noinline dataset](https://drive.google.com/file/d/1wt7GY-DDp8J_2zeBBVUrcfWIyerg_xLO/view?usp=sharing)
 - [PIE dataset](https://drive.google.com/file/d/1IfEbnS9RtHhVhW8oiqnE7G75uPej1FPx/view?usp=sharing)
 - [LTO dataset](https://drive.google.com/file/d/1Tsd-WNO_JDlEX0GylBOxsFjOPUmUyeGh/view?usp=sharing)
@@ -216,11 +236,9 @@ processing in the step 1, which is machine-dependent.
 ### Missing binaries
 
 In Fastopt dataset, the gsl package is missing 8 binaries due to compilation
-failure.
-
-Clang-8 and clang-9 induce compiler hang bug  when compiling gsl package for
-32bit ARM. We reported this issue to bug-gsl and llvm-project, but we received
-an answer that these versions are not currently supported.
+failure. Clang-8 and clang-9 induce compiler hang bug  when compiling gsl
+package for 32bit ARM. We reported this issue to bug-gsl and llvm-project, but
+we received an answer that these versions are not currently supported.
 
 # Authors
 This project has been conducted by the below authors at KAIST.
