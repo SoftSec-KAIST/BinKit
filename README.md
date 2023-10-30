@@ -101,6 +101,7 @@ Below data is only used for our evaluation.
   - gcc-6.5.0
   - gcc-7.3.0
   - gcc-8.2.0
+  - gcc-8.5.0
   - gcc-9.4.0
   - gcc-10.3.0
   - gcc-11.2.0
