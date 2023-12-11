@@ -139,8 +139,8 @@ function do_compile()
         OPTIONS="${OPTIONS} -fno-inline"
     fi
 
-    if [[ $SUFFIX =~ "pie" ]]; then
-        OPTIONS="${OPTIONS} -pie -fPIE"
+    if [[ $SUFFIX =~ "nopie" ]]; then
+        OPTIONS="${OPTIONS} -no-pie -fno-PIE"
 
         # we will not consider giving nostartfiles option since this corrupt the
         # section and yields corrupted elf binary.
