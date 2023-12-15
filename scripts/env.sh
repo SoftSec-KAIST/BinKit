@@ -5,6 +5,11 @@ TOOL_PATH="${PROJ_ROOT}/tools/"
 export PROJ_ROOT TOOL_PATH
 mkdir -p "$TOOL_PATH"
 
+echo "[*] Project root: ${PROJ_ROOT}"
+echo "[*] Tool path: ${TOOL_PATH}"
+echo "  BinKit's tools will installed at ${TOOL_PATH}"
+echo "  If you want to change it, edit env.sh and then run \`source scripts/env.sh\` again."
+
 CTNG_BIN="$TOOL_PATH/crosstool-ng/ct-ng"
 CTNG_PATH="$TOOL_PATH/crosstool-ng"
 CTNG_CONF_PATH="$PROJ_ROOT/ctng_conf"
